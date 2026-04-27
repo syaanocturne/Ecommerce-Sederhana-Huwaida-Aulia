@@ -1,0 +1,744 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mammalia - Premium Cookies Shop</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        line-height: 1.6;
+        color: #4a2c0b;
+        overflow-x: hidden;
+      }
+
+      /* Color Scheme */
+      :root {
+        --primary-brown: #8b4513;
+        --secondary-brown: #a0522d;
+        --cream: #f5f5dc;
+        --dark-cream: #ede4d4;
+        --white: #ffffff;
+      }
+
+      /* Header */
+      header {
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 20px rgba(139, 69, 19, 0.15);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        transition: all 0.3s ease;
+      }
+
+      .header-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: clamp(1.4rem, 4vw, 1.8rem);
+        font-weight: 700;
+        color: var(--primary-brown);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+        gap: clamp(1rem, 3vw, 2rem);
+        align-items: center;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: var(--primary-brown);
+        font-weight: 500;
+        font-size: clamp(0.9rem, 2.5vw, 1rem);
+        transition: color 0.3s ease;
+        position: relative;
+        padding: 0.5rem 0;
+      }
+
+      nav a:hover {
+        color: var(--secondary-brown);
+      }
+
+      nav a::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--secondary-brown);
+        transition: all 0.3s ease;
+      }
+
+      nav a:hover::after {
+        width: 100%;
+      }
+
+      /* Hamburger Menu */
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        gap: 4px;
+        padding: 0.5rem;
+      }
+
+      .hamburger span {
+        width: 25px;
+        height: 3px;
+        background: var(--primary-brown);
+        transition: all 0.3s ease;
+        border-radius: 2px;
+      }
+
+      /* Hero Section */
+      .hero {
+        background: linear-gradient(
+          135deg,
+          var(--cream) 0%,
+          var(--dark-cream) 100%
+        );
+        padding: clamp(100px, 15vh, 140px) clamp(1rem, 5vw, 2rem)
+          clamp(60px, 10vh, 80px);
+        text-align: center;
+        margin-top: 80px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23d4c9a8" opacity="0.1"/><circle cx="75" cy="75" r="1.5" fill="%23d4c9a8" opacity="0.1"/><circle cx="50" cy="10" r="0.8" fill="%23d4c9a8" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        pointer-events: none;
+      }
+
+      .hero-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.2rem, 7vw, 4rem);
+        font-weight: 700;
+        color: var(--primary-brown);
+        margin-bottom: clamp(1rem, 3vw, 1.5rem);
+        line-height: 1.2;
+      }
+
+      .hero p {
+        font-size: clamp(1rem, 3vw, 1.3rem);
+        color: #6b4c2e;
+        margin-bottom: clamp(2rem, 5vw, 2.5rem);
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .cta-button {
+        display: inline-block;
+        background: var(--primary-brown);
+        color: var(--white);
+        padding: clamp(0.9rem, 2.5vw, 1rem) clamp(2rem, 5vw, 2.5rem);
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: clamp(1rem, 2.5vw, 1.1rem);
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 25px rgba(139, 69, 19, 0.3);
+        border: 2px solid transparent;
+      }
+
+      .cta-button:hover {
+        background: var(--secondary-brown);
+        transform: translateY(-3px);
+        box-shadow: 0 12px 35px rgba(139, 69, 19, 0.4);
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+
+      /* Products Section */
+      .products-section {
+        padding: clamp(60px, 12vh, 80px) clamp(1rem, 5vw, 2rem);
+        background: var(--white);
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: clamp(1.8rem, 5vw, 2.8rem);
+        font-weight: 700;
+        color: var(--primary-brown);
+        margin-bottom: clamp(2rem, 6vw, 3rem);
+        position: relative;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: var(--primary-brown);
+        border-radius: 2px;
+      }
+
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(
+          auto-fit,
+          minmax(clamp(260px, 45vw, 320px), 1fr)
+        );
+        gap: clamp(1.5rem, 4vw, 2rem);
+      }
+
+      .product-card {
+        background: var(--cream);
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 10px 40px rgba(139, 69, 19, 0.12);
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        border: 1px solid rgba(237, 228, 212, 0.5);
+        position: relative;
+      }
+
+      .product-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(
+          90deg,
+          var(--primary-brown),
+          var(--secondary-brown)
+        );
+      }
+
+      .product-card:hover {
+        transform: translateY(-12px) scale(1.02);
+        box-shadow: 0 25px 60px rgba(139, 69, 19, 0.25);
+      }
+
+      .product-image {
+        width: 100%;
+        height: clamp(200px, 30vw, 240px);
+        object-fit: cover;
+        transition: transform 0.4s ease;
+      }
+
+      .product-card:hover .product-image {
+        transform: scale(1.05);
+      }
+
+      .product-info {
+        padding: clamp(1.2rem, 4vw, 1.5rem);
+      }
+
+      .product-name {
+        font-size: clamp(1.1rem, 3vw, 1.3rem);
+        font-weight: 600;
+        color: var(--primary-brown);
+        margin-bottom: 0.5rem;
+        line-height: 1.3;
+      }
+
+      .product-price {
+        font-size: clamp(1.3rem, 4vw, 1.6rem);
+        font-weight: 700;
+        color: var(--secondary-brown);
+        margin-bottom: 1rem;
+      }
+
+      .add-to-cart {
+        width: 100%;
+        background: var(--primary-brown);
+        color: var(--white);
+        border: none;
+        padding: clamp(0.8rem, 3vw, 0.9rem) 1.5rem;
+        border-radius: 16px;
+        font-family: "Poppins", sans-serif;
+        font-weight: 600;
+        font-size: clamp(0.9rem, 2.5vw, 1rem);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        min-height: 48px;
+      }
+
+      .add-to-cart:hover {
+        background: var(--secondary-brown);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(139, 69, 19, 0.3);
+      }
+
+      /* Footer */
+      footer {
+        background: linear-gradient(
+          135deg,
+          var(--primary-brown) 0%,
+          var(--secondary-brown) 100%
+        );
+        color: var(--white);
+        padding: clamp(2.5rem, 8vh, 3rem) clamp(1rem, 5vw, 2rem)
+          clamp(1.5rem, 4vh, 2rem);
+        margin-top: clamp(4rem, 8vh, 6rem);
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: clamp(1.5rem, 4vw, 2rem);
+        margin-bottom: 2rem;
+      }
+
+      .footer-section h3 {
+        margin-bottom: 1rem;
+        font-weight: 600;
+        font-size: clamp(1.1rem, 3vw, 1.3rem);
+      }
+
+      .footer-section p,
+      .footer-section a {
+        color: rgba(255, 255, 255, 0.9);
+        text-decoration: none;
+        line-height: 1.7;
+        font-size: 0.95rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-section a:hover {
+        color: var(--white);
+        transform: translateX(5px);
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.9rem;
+      }
+
+      /* Cart Count Badge */
+      .cart-count {
+        background: var(--secondary-brown);
+        color: var(--white);
+        border-radius: 50%;
+        padding: 0.2rem 0.6rem;
+        font-size: 0.75rem;
+        font-weight: 700;
+        min-width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 0.5rem;
+      }
+
+      /* RESPONSIVE BREAKPOINTS */
+
+      /* Tablet */
+      @media (max-width: 1024px) {
+        .products-grid {
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 1.5rem;
+        }
+      }
+
+      /* Mobile Menu */
+      @media (max-width: 768px) {
+        .hamburger {
+          display: flex;
+        }
+
+        nav ul {
+          position: fixed;
+          left: -100%;
+          top: 80px;
+          flex-direction: column;
+          background-color: rgba(255, 255, 255, 0.98);
+          backdrop-filter: blur(20px);
+          width: 100%;
+          text-align: center;
+          transition: left 0.3s ease;
+          padding: 2rem 0;
+          box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+          gap: 1.5rem;
+        }
+
+        nav ul.active {
+          left: 0;
+        }
+
+        .hamburger.active span:nth-child(1) {
+          transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+          opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+          transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        .hero {
+          padding: clamp(90px, 20vh, 120px) 1.5rem clamp(50px, 12vh, 70px);
+        }
+
+        .products-section {
+          padding: 60px 1.5rem;
+        }
+      }
+
+      /* Small Mobile */
+      @media (max-width: 480px) {
+        .header-container,
+        .hero,
+        .products-section,
+        footer {
+          padding-left: 1rem;
+          padding-right: 1rem;
+        }
+
+        .products-grid {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+
+        .product-card {
+          border-radius: 20px;
+        }
+      }
+
+      /* Notification */
+      .notification {
+        position: fixed;
+        top: 120px;
+        right: 20px;
+        background: var(--primary-brown);
+        color: var(--white);
+        padding: 1rem 1.5rem;
+        border-radius: 16px;
+        z-index: 3000;
+        font-family: "Poppins", sans-serif;
+        box-shadow: 0 15px 40px rgba(139, 69, 19, 0.4);
+        transform: translateX(400px);
+        transition: transform 0.3s ease;
+        max-width: 300px;
+      }
+
+      .notification.show {
+        transform: translateX(0);
+      }
+
+      .notification i {
+        margin-right: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="header-container">
+        <a href="#" class="logo">
+          <i class="fas fa-cookie-bite"></i> Mammalia
+        </a>
+        <nav>
+          <ul id="nav-menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#categories">Categories</a></li>
+            <li>
+              <a href="#cart" id="cart-link">
+                <i class="fas fa-shopping-cart"></i> Cart
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Hero Section -->
+      <section id="home" class="hero">
+        <div class="hero-container">
+          <h1>Hi There!</h1>
+          <p>
+            Discover our premium collection of artisanal cookies, crafted with
+            love and the finest ingredients. Perfect for every sweet moment.
+          </p>
+          <a href="#products" class="cta-button">
+            <i class="fas fa-shopping-bag"></i> Shop Now
+          </a>
+        </div>
+      </section>
+
+      <!-- Featured Products Section -->
+      <section id="products" class="products-section">
+        <div class="container">
+          <h2 class="section-title">Featured Products</h2>
+          <div class="products-grid">
+            <!-- Product 1 -->
+            <article class="product-card">
+              <img
+                src="images/chocolate bites.jpeg"
+                alt="Chocolate Bites (300gr)"
+                class="product-image"
+              />
+              <div class="product-info">
+                <h3 class="product-name">Chocolate Bites (300gr)</h3>
+                <div class="product-price">Rp 35.000</div>
+                <button
+                  class="add-to-cart"
+                  onclick="addToCart('Chocolate Bites', 35.0)"
+                >
+                  <i class="fas fa-cart-plus"></i> Add to Cart
+                </button>
+              </div>
+            </article>
+
+            <!-- Product 2 -->
+            <article class="product-card">
+              <img
+                src="images/matcha bites.jpeg"
+                alt="Matcha Bites"
+                class="product-image"
+              />
+              <div class="product-info">
+                <h3 class="product-name">Matcha Bites (300gr)</h3>
+                <div class="product-price">Rp 35.000</div>
+                <button
+                  class="add-to-cart"
+                  onclick="addToCart('Matcha Bites', 35.0)"
+                >
+                  <i class="fas fa-cart-plus"></i> Add to Cart
+                </button>
+              </div>
+            </article>
+
+            <!-- Product 3 -->
+            <article class="product-card">
+              <img
+                src="images/red velvet cookies.jpeg"
+                alt="Red Velvet Cookies"
+                class="product-image"
+              />
+              <div class="product-info">
+                <h3 class="product-name">Red Velvet Cookies (300gr)</h3>
+                <div class="product-price">Rp 35.000</div>
+                <button
+                  class="add-to-cart"
+                  onclick="addToCart('Red Velvet Cookies', 35.0)"
+                >
+                  <i class="fas fa-cart-plus"></i> Add to Cart
+                </button>
+              </div>
+            </article>
+
+            <!-- Product 4 -->
+            <article class="product-card">
+              <img
+                src="images/kastangel.jpeg"
+                alt="Kastangel"
+                class="product-image"
+              />
+              <div class="product-info">
+                <h3 class="product-name">Kastangel</h3>
+                <div class="product-price">Rp 40.000</div>
+                <button
+                  class="add-to-cart"
+                  onclick="addToCart('Kastangel', 40.0)"
+                >
+                  <i class="fas fa-cart-plus"></i> Add to Cart
+                </button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3><i class="fas fa-cookie-bite"></i> Mammalia</h3>
+          <p>
+            Premium cookies made with love. Every bite tells a story of
+            tradition and quality.
+          </p>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <p>
+            <a href="#home"><i class="fas fa-home"></i> Home</a>
+          </p>
+          <p>
+            <a href="#products"><i class="fas fa-box"></i> Products</a>
+          </p>
+          <p>
+            <a href="#categories"><i class="fas fa-tags"></i> Categories</a>
+          </p>
+          <p>
+            <a href="#cart"><i class="fas fa-shopping-cart"></i> Cart</a>
+          </p>
+        </div>
+        <div class="footer-section">
+          <h3>Contact Info</h3>
+          <p><i class="fas fa-envelope"></i> hello@mammalia.com</p>
+          <p><i class="fas fa-phone"></i> +62 812 3456 7890</p>
+          <p><i class="fas fa-map-marker-alt"></i> Bandung, Indonesia</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          &copy; 2026 Mammalia. All rights reserved. Made with
+          <i class="fas fa-heart"></i> for cookie lovers.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      let cart = [];
+
+      // Mobile Navigation Toggle
+      const hamburger = document.getElementById("hamburger");
+      const navMenu = document.getElementById("nav-menu");
+
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        navMenu.classList.toggle("active");
+      });
+
+      // Close mobile menu when clicking on a link
+      document.querySelectorAll("nav a").forEach((link) => {
+        link.addEventListener("click", () => {
+          hamburger.classList.remove("active");
+          navMenu.classList.remove("active");
+        });
+      });
+
+      function addToCart(productName, price) {
+        cart.push({ name: productName, price: price });
+        updateCartCount();
+        showNotification(`${productName} added to cart! 🎉`);
+      }
+
+      function updateCartCount() {
+        const cartLink = document.getElementById("cart-link");
+        let count = cartLink.querySelector(".cart-count");
+
+        if (cart.length > 0) {
+          if (!count) {
+            count = document.createElement("span");
+            count.className = "cart-count";
+            cartLink.appendChild(count);
+          }
+          count.textContent = cart.length;
+        } else if (count) {
+          count.remove();
+        }
+      }
+
+      function showNotification(message) {
+        const notification = document.createElement("div");
+        notification.className = "notification show";
+        notification.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+          notification.classList.remove("show");
+          setTimeout(() => {
+            document.body.removeChild(notification);
+          }, 300);
+        }, 3000);
+      }
+
+      // Smooth scrolling
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Navbar scroll effect
+      window.addEventListener("scroll", () => {
+        const header = document.querySelector("header");
+        if (window.scrollY > 100) {
+          header.style.background = "rgba(255, 255, 255, 0.98)";
+          header.style.boxShadow = "0 5px 30px rgba(139, 69, 19, 0.2)";
+        } else {
+          header.style.background = "rgba(255, 255, 255, 0.98)";
+          header.style.boxShadow = "0 2px 20px rgba(139, 69, 19, 0.15)";
+        }
+      });
+
+      // Initialize cart count
+      updateCartCount();
+    </script>
+  </body>
+</html>
