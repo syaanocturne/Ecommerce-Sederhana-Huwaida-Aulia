@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mammalia - Premium Cookies Shop</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        line-height: 1.6;
+        color: #4a2c0b;
+      }
+
+      /* Color Scheme */
+      :root {
+        --primary-brown: #8b4513;
+        --secondary-brown: #a0522d;
+        --cream: #f5f5dc;
+        --dark-cream: #ede4d4;
+        --white: #ffffff;
+      }
+
+      /* Header */
+      header {
+        background: var(--white);
+        box-shadow: 0 2px 10px rgba(139, 69, 19, 0.1);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .header-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--primary-brown);
+        text-decoration: none;
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: var(--primary-brown);
+        font-weight: 500;
+        transition: color 0.3s ease;
+        position: relative;
+      }
+
+      nav a:hover {
+        color: var(--secondary-brown);
+      }
+
+      nav a::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -5px;
+        left: 0;
+        background: var(--secondary-brown);
+        transition: width 0.3s ease;
+      }
+
+      nav a:hover::after {
+        width: 100%;
+      }
+
+      /* Hero Section */
+      .hero {
+        background: var(--cream);
+        padding: 120px 2rem 80px;
+        text-align: center;
+        margin-top: 80px;
+      }
+
+      .hero-container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        color: var(--primary-brown);
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+      }
+
+      .hero p {
+        font-size: 1.3rem;
+        color: #6b4c2e;
+        margin-bottom: 2.5rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .cta-button {
+        display: inline-block;
+        background: var(--primary-brown);
+        color: var(--white);
+        padding: 1rem 2.5rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(139, 69, 19, 0.3);
+      }
+
+      .cta-button:hover {
+        background: var(--secondary-brown);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(139, 69, 19, 0.4);
+      }
+
+      /* Products Section */
+      .products-section {
+        padding: 80px 2rem;
+        background: var(--white);
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary-brown);
+        margin-bottom: 3rem;
+      }
+
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+      }
+
+      .product-card {
+        background: var(--cream);
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(139, 69, 19, 0.1);
+        transition: all 0.3s ease;
+        border: 1px solid var(--dark-cream);
+      }
+
+      .product-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(139, 69, 19, 0.2);
+      }
+
+      .product-image {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+      }
+
+      .product-info {
+        padding: 1.5rem;
+      }
+
+      .product-name {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: var(--primary-brown);
+        margin-bottom: 0.5rem;
+      }
+
+      .product-price {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--secondary-brown);
+        margin-bottom: 1rem;
+      }
+
+      .add-to-cart {
+        width: 100%;
+        background: var(--primary-brown);
+        color: var(--white);
+        border: none;
+        padding: 0.9rem;
+        border-radius: 12px;
+        font-family: "Poppins", sans-serif;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .add-to-cart:hover {
+        background: var(--secondary-brown);
+        transform: translateY(-2px);
+      }
+
+      /* Footer */
+      footer {
+        background: var(--primary-brown);
+        color: var(--white);
+        padding: 3rem 2rem 1.5rem;
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .footer-section h3 {
+        margin-bottom: 1rem;
+        font-weight: 600;
+      }
+
+      .footer-section p,
+      .footer-section a {
+        color: var(--cream);
+        text-decoration: none;
+        line-height: 1.8;
+      }
+
+      .footer-section a:hover {
+        color: var(--white);
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid var(--secondary-brown);
+        color: var(--cream);
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .header-container {
+          padding: 1rem;
+        }
+
+        nav ul {
+          gap: 1rem;
+        }
+
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero p {
+          font-size: 1.1rem;
+        }
+
+        .products-section {
+          padding: 60px 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="header-container">
+        <a href="#" class="logo">
+          <i class="fas fa-cookie-bite"></i> Mammalia
+        </a>
+        <nav>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#categories">Categories</a></li>
+            <li>
+              <a href="#cart"><i class="fas fa-shopping-cart"></i> Cart</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Hero Section -->
+      <section id="home" class="hero">
+        <div class="hero-container">
+          <h1>Hi There!</h1>
+          <p>
+            Discover our premium collection of artisanal cookies, crafted with
+            love and the finest ingredients. Perfect for every sweet moment.
+          </p>
+          <a href="#products" class="cta-button">Shop Now</a>
+        </div>
+      </section>
+
+      <!-- Featured Products Section -->
+      <section id="products" class="products-section">
+        <div class="container">
+          <h2 class="section-title">Featured Products</h2>
+          <div class="products-grid">
+            <!-- Product 1 -->
+            <article class="product-card">
+              <img
+                src="images/chocolate bites.jpeg"
+                alt="Cocolate Bites (300gr)"
+                class="product-image"
+              />
+              <div class="product-info">
+                <h3 class="product-name">Chocolate Bites (300gr)</h3>
+                <div class="product-price">Rp 35.000</div>
+                <button
+                  class="add-to-cart"
+                  onclick="addToCart('Chocolate Bites', 35.0)"
+                >
+                  <i class="fas fa-cart-plus"></i> Add to Cart
+                </button>
+              </div>
+            </article>
+
+            <!-- Product 2 -->
+            <article class="product-card">
+              <img
+                src="images/matcha bites.jpeg"
+                alt="Matcha Bites"
+                class="product-image"
+              />
+              <div class="product-info">
+                <h3 class="product-name">Matcha Bites (300gr)</h3>
+                <div class="product-price">Rp 35.000</div>
+                <button
+                  class="add-to-cart"
+                  onclick="addToCart('Matcha Bites', 35.0)"
+                >
+                  <i class="fas fa-cart-plus"></i> Add to Cart
+                </button>
+              </div>
+            </article>
+
+            <!-- Product 3 -->
+            <article class="product-card">
+              <img
+                src="images/red velvet cookies.jpeg"
+                alt="Red Velvet Cookies"
+                class="product-image"
+              />
+              <div class="product-info">
+                <h3 class="product-name">Red Velvet Cookies (300gr)</h3>
+                <div class="product-price">Rp 35.000</div>
+                <button
+                  class="add-to-cart"
+                  onclick="addToCart('Red Velvet Cookies', 35.0)"
+                >
+                  <i class="fas fa-cart-plus"></i> Add to Cart
+                </button>
+              </div>
+            </article>
+
+            <!-- Product 4 -->
+            <article class="product-card">
+              <img
+                src="images/kastangel.jpeg"
+                alt="Kastangel"
+                class="product-image"
+              />
+              <div class="product-info">
+                <h3 class="product-name">Kastangel</h3>
+                <div class="product-price">Rp 40.000</div>
+                <button
+                  class="add-to-cart"
+                  onclick="addToCart('Kastangel', 40.0)"
+                >
+                  <i class="fas fa-cart-plus"></i> Add to Cart
+                </button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Mammalia</h3>
+          <p>
+            Premium cookies made with love. Every bite tells a story of
+            tradition and quality.
+          </p>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <p><a href="#home">Home</a></p>
+          <p><a href="#products">Products</a></p>
+          <p><a href="#categories">Categories</a></p>
+          <p><a href="#cart">Cart</a></p>
+        </div>
+        <div class="footer-section">
+          <h3>Contact Info</h3>
+          <p><i class="fas fa-envelope"></i> hello@mammalia.com</p>
+          <p><i class="fas fa-phone"></i> +62 812 3456 7890</p>
+          <p><i class="fas fa-map-marker-alt"></i> Bandung, Indonesia</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          &copy; 2026 Mammalia. All rights reserved. Made with
+          <i class="fas fa-heart"></i> for cookie lovers.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      let cart = [];
+
+      function addToCart(productName, price) {
+        cart.push({ name: productName, price: price });
+        updateCartCount();
+        // Simple notification
+        const notification = document.createElement("div");
+        notification.style.cssText = `
+                position: fixed; top: 100px; right: 20px; background: #8B4513; 
+                color: white; padding: 1rem 1.5rem; border-radius: 10px; 
+                z-index: 2000; font-family: Poppins, sans-serif;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            `;
+        notification.textContent = `${productName} added to cart!`;
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+          document.body.removeChild(notification);
+        }, 3000);
+      }
+
+      function updateCartCount() {
+        const cartLink = document.querySelector('a[href="#cart"]');
+        const count = cartLink.querySelector(".cart-count");
+        if (cart.length > 0) {
+          if (!count) {
+            const newCount = document.createElement("span");
+            newCount.className = "cart-count";
+            newCount.style.cssText = `
+                        background: #A0522D; color: white; border-radius: 50%; 
+                        padding: 0.2rem 0.5rem; font-size: 0.8rem; margin-left: 0.5rem;
+                    `;
+            newCount.textContent = cart.length;
+            cartLink.appendChild(newCount);
+          } else {
+            count.textContent = cart.length;
+          }
+        }
+      }
+
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
